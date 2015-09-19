@@ -1,7 +1,13 @@
 package com.example.kdtm.alarm;
 
+import android.app.Activity;
+import android.os.Bundle;
+
 /**
  * Created by kdtm on 2015/09/20.
  */
-public class EditActivity {
+public class EditActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    }
 }

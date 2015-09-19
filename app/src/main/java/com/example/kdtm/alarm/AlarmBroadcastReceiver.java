@@ -17,14 +17,5 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
         // 画面起動に必要
         notification.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(notification);
-//        MediaPlayer mp = MediaPlayer.create(context, R.raw.test);
-//        try{
-//            mp.prepare();
-//        }catch( Exception e ){ }
-//        mp.start();
-//
-//        if (mp.isPlaying()) {
-//            Toast.makeText(context, "Received ", Toast.LENGTH_LONG).show();
-//        }
     }
 }
