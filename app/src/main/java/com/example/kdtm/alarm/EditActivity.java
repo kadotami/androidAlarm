@@ -2,6 +2,7 @@ package com.example.kdtm.alarm;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TimePicker;
 
 /**
  * Created by kdtm on 2015/09/20.
@@ -11,5 +12,8 @@ public class EditActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+
+        TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
+        timePicker.setIs24HourView(true);
     }
 }
