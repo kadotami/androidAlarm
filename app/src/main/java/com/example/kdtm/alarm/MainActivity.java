@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
                 new String[] {"time", "is_active"},
                 new int[] {R.id.listTime, R.id.activeSwitch}
         );
-        ListView list = (ListView)findViewById(R.id.listView);
+        ListView list = (ListView)findViewById(R.id.alermList);
 
 
         // 開始ボタン
@@ -57,6 +57,15 @@ public class MainActivity extends Activity {
 
                 Toast.makeText(getApplicationContext(), "Set Alarm ", Toast.LENGTH_SHORT).show();
 
+            }
+        });
+
+        Button addButton = (Button) findViewById(R.id.addAlerm);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                startActivity(intent);
             }
         });
 

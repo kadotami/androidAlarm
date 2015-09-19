@@ -23,11 +23,11 @@
         android:text="Alarm Start" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/addAlerm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="50dp"
         android:textSize="24sp"
-        android:text="Alarm Start" />
+        android:text="+" />
 
 </LinearLayout>
