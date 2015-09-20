@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * Created by kdtm on 2015/09/19.
  */
-public class AlermList {
-    public static String TABLE_NAME = "alerm";
+public class AlarmList {
+    public static String TABLE_NAME = "alarm";
     public static String COLUMN_ID = "_id";
     public static String COLUMN_TIME = "time";
     public static String COLUMN_ISACTIVE = "is_active";
@@ -23,48 +23,48 @@ public class AlermList {
                 + COLUMN_TIME + " text not null, " + COLUMN_ISACTIVE + "boolean default 'true' );";
     }
 
-    public static Alerm findById(Context context, long id) {
+    public static Alarm findById(Context context, long id) {
         SQLiteDatabase db = getReadableDB(context);
-        Alerm alerm = new Alerm();
+        Alarm alarm = new Alarm();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME +"where _id = ?", new String[] {String.valueOf(id)});
         if (cursor.moveToFirst()) {
-            alerm.id = cursor.getLong(0);
-            alerm.time = cursor.getString(1);
+            alarm.id = cursor.getLong(0);
+            alarm.time = cursor.getString(1);
         }
         cursor.close();
-        return alerm;
+        return alarm;
     }
 
-    public static List<Alerm> findAll(Context context) {
+    public static List<Alarm> findAll(Context context) {
         SQLiteDatabase db = getReadableDB(context);
 
-        List<Alerm> listItem = new ArrayList<Alerm>();
+        List<Alarm> listItem = new ArrayList<Alarm>();
 
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " order by " + COLUMN_ID , null);
         if (cursor.moveToFirst()) {
             do {
-                Alerm alerm = new Alerm();
-                alerm.id= cursor.getLong(0);
-                alerm.time = cursor.getString(1);
-                listItem.add(alerm);
+                Alarm alarm = new Alarm();
+                alarm.id= cursor.getLong(0);
+                alarm.time = cursor.getString(1);
+                listItem.add(alarm);
             } while (cursor.moveToNext());
         }
         cursor.close();
         return listItem;
     }
 
-    public static long insert(Context context, Alerm alerm) {
+    public static long insert(Context context, Alarm alarm) {
         SQLiteDatabase db = getWritableDB(context);
         ContentValues values = new ContentValues();
-        values.put(COLUMN_TIME, alerm.time);
+        values.put(COLUMN_TIME, alarm.time);
         return db.insert(TABLE_NAME, null, values);
     }
 
-    public static long update(Context context, Alerm alerm) {
+    public static long update(Context context, Alarm alarm) {
         SQLiteDatabase db = getWritableDB(context);
         ContentValues values = new ContentValues();
-        values.put(COLUMN_TIME, alerm.time);
-        return db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[]{String.valueOf(alerm.id)});
+        values.put(COLUMN_TIME, alarm.time);
+        return db.update(TABLE_NAME, values, COLUMN_ID + " = ?", new String[]{String.valueOf(alarm.id)});
     }
 
     public static long delete(Context context, long id) {
@@ -82,3 +82,4 @@ public class AlermList {
         return helper.getReadableDatabase();
     }
 }
+
