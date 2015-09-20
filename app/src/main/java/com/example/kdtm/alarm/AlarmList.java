@@ -15,12 +15,12 @@ public class AlarmList {
     public static String TABLE_NAME = "alarm";
     public static String COLUMN_ID = "_id";
     public static String COLUMN_TIME = "time";
-    public static String COLUMN_ISACTIVE = "is_active";
+    public static String COLUMN_IS_ACTIVE = "is_active";
 
 
     public static String create() {
         return "create table " + TABLE_NAME + "("+COLUMN_ID+" integer primary key autoincrement not null, "
-                + COLUMN_TIME + " text not null, " + COLUMN_ISACTIVE + "boolean default 1 );";
+                + COLUMN_TIME + " text not null, " + COLUMN_IS_ACTIVE + "boolean default 1 );";
     }
 
     public static Alarm findById(Context context, long id) {

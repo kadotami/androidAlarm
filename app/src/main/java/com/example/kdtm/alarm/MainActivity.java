@@ -13,28 +13,31 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends Activity {
+    private List<Alarm> listItem;
     SimpleAdapter listAdapter = null;
-    List<Map<String, String>> alermList = null;
+    List<Map<String, ?>> alarmList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        alermList = new ArrayList<Map<String, String>>();
-
-        listAdapter = new SimpleAdapter(
-                this,
-                alermList,
-                R.id.alermList,
-                new String[] {"time", "is_active"},
-                new int[] {R.id.listTime, R.id.activeSwitch}
-        );
-        ListView list = (ListView)findViewById(R.id.alermList);
+//        alarmList = new ArrayList<Map<String, String>>();
+//
+//        listAdapter = new SimpleAdapter(
+//                this,
+//                alarmList,
+//                R.id.alarmList,
+//                new String[] {"time", "is_active"},
+//                new int[] {R.id.listTime, R.id.activeSwitch}
+//        );
+//        ListView list = (ListView)findViewById(R.id.alarmList);
+//        list.setAdapter(listAdapter);
 
 
         // 開始ボタン
@@ -69,5 +72,29 @@ public class MainActivity extends Activity {
             }
         });
 
+    }
+
+    protected void onResume() {
+        super.onResume();
+
+        listItem = AlarmList.findAll(getApplicationContext());
+        alarmList = new ArrayList<Map<String, ?>>();
+        for (Alarm alarm : listItem) {
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("id", alarm.id);
+            map.put("time", alarm.time);
+            map.put("is_active", alarm.is_active);
+            alarmList.add(map);
+        }
+
+        listAdapter = new SimpleAdapter(
+                this,
+                alarmList,
+                R.layout.alarm_list,
+                new String[] {"time", "is_active"},
+                new int[] {R.id.listTime, R.id.activeSwitch}
+        );
+        ListView list = (ListView)findViewById(R.id.alarmList);
+        list.setAdapter(listAdapter);
     }
 }
