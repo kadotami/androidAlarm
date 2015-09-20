@@ -27,10 +27,13 @@ public class EditActivity extends Activity {
 
     class SaveButtonClickListener implements View.OnClickListener {
         public void onClick(View v) {
+            Alarm alarm = new Alarm();
             TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
             hour = timePicker.getCurrentHour();
             minute = timePicker.getCurrentMinute();
             Log.d("tim", Integer.toString(hour)+":"+Integer.toString(minute));
+            alarm.time = Integer.toString(hour)+":"+Integer.toString(minute);
+            AlarmList.insert(getApplicationContext(),alarm);
             finish();
         }
     }
