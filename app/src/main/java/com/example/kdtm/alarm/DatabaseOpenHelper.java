@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by kdtm on 2015/09/19.
  */
 public class DatabaseOpenHelper extends SQLiteOpenHelper {
-    private static final String DB_NAME = "alermList.db";
+    private static final String DB_NAME = "alarmList.db";
 
     private static final int DB_VERSION = 1;
 
@@ -18,7 +18,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(AlermList.create());
+        db.execSQL(AlarmList.create());
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

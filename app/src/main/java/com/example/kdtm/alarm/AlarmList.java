@@ -20,7 +20,7 @@ public class AlarmList {
 
     public static String create() {
         return "create table " + TABLE_NAME + "("+COLUMN_ID+" integer primary key autoincrement not null, "
-                + COLUMN_TIME + " text not null, " + COLUMN_ISACTIVE + "boolean default 'true' );";
+                + COLUMN_TIME + " text not null, " + COLUMN_ISACTIVE + "boolean default 1 );";
     }
 
     public static Alarm findById(Context context, long id) {
@@ -30,6 +30,7 @@ public class AlarmList {
         if (cursor.moveToFirst()) {
             alarm.id = cursor.getLong(0);
             alarm.time = cursor.getString(1);
+            alarm.is_active = cursor.getInt(2) > 0;
         }
         cursor.close();
         return alarm;
